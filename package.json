@@ -4,8 +4,8 @@
   "version": "v2.2.0",
   "sideEffects": false,
   "main": "dist/bootstrap-validate.js",
-  "repository": "git@github.com:PascaleBeier/bootstrap-validate.git",
-  "author": "Pascale Beier <mail@pascalebeier.de>",
+  "repository": "git@github.com:redouanahdd/bootstrap-validate.git",
+  "author": "Redouan Ahad-Dad<redouan.ahdd@gmail.com>",
   "keywords": [
     "bootstrap",
     "bootstrap3",
