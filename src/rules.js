@@ -51,18 +51,14 @@ module.exports = {
      * @error Please fill out this field!
      * @description Require a field to be filled out.
      */
-    new RegExp(
-      /^.*?[a-zA-Z]{1,}.*?[a-zA-Z]{1,}.*?$/i
-    ).test(input.value),
+    new RegExp(/^.*?[a-zA-Z]{1,}.*?[a-zA-Z]{1,}.*?$/i).test(input.value),
   hasTwoNumbers: input =>
     /**
      * @since 1.0.7
      * @error Please fill out this field!
      * @description Require a field to be filled out.
      */
-    new RegExp(
-      /^.*?[0-9]{1,}.*?[0-9]{1,}.*?$/i
-    ).test(input.value),
+    new RegExp(/^.*?[0-9]{1,}.*?[0-9]{1,}.*?$/i).test(input.value),
   hasTwoSpecialChar: input =>
     /**
      * @since 1.0.7
@@ -70,8 +66,17 @@ module.exports = {
      * @description Require a field to be filled out.
      */
     new RegExp(
-      /^^.*?[\/*-+&:=,.%$\[\]\(\)\!\§\@\<\>]{1,}.*?[[\/*-+&:=,.%$\[\]\(\)\!\§\@\<\>]{1,}.*?$/
+      /^^.*?[\/\*\-\+\&\:\=\,\.\%\$\[\]\(\)\!\§\@\<\>]{1,}.*?[[\/\*\-\+\&\:\=\,\.\%\$\[\]\(\)\!\§\@\<\>]{1,}.*?$/
     ).test(input.value),
+  forbiddenChar: input =>
+    /**
+     * @since 1.0.7
+     * @error Please fill out this field!
+     * @description Require a field to be filled out.
+     */
+    new RegExp(/([^èéòàùì\w\s\/\*\-\+\&\:\=\,\.\%\$\[\]\(\)\!\§\@\<\>])$/).exec(
+      input.value
+    ),
   url: input =>
     /**
      * @since 1.0.10

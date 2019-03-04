@@ -18,7 +18,7 @@ module.exports = (input, string, callback) => {
         // Take rule name from options.
         const ruleName = options.shift();
         // Take Error Text from options.
-        const errorText = options.pop();
+        let errorText = options.pop();
         // Sometimes, we need to take special care of options.
         // Allow the use of the colon in the regex options.
         if (ruleName === "regex") {
@@ -28,6 +28,10 @@ module.exports = (input, string, callback) => {
 
         // invoke the rule, returning boolean
         const validity = rules[ruleName](element, ...options);
+        if (ruleName === "forbiddenChar" && validity instanceof Array) {
+          console.log(validity);
+          errorText = errorText.replace(PLACEHOLDER, validity.join(","));
+        }
 
         // DOM Manipulations to toggle errors.
         feedback(element, ruleName, validity, errorText);

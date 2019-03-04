@@ -4,6 +4,7 @@ module.exports = {
   CLASS_HELP_BLOCK: "invalid-feedback",
   SEPARATOR_RULE: "|",
   SEPARATOR_OPTION: ":",
+  PLACEHOLDER: "%%s%%",
   LISTENER: "input"
 };
 
