@@ -74,8 +74,8 @@ module.exports = {
      * @error Please fill out this field!
      * @description Require a field to be filled out.
      */
-    new RegExp(/([^èéòàùì\w\s\/\*\-\+\&\:\=\,\.\%\$\[\]\(\)\!\§\@\<\>])$/).exec(
-      input.value
+    input.value.match(
+      /([^èéòàùì\w\s\/\*\-\+\&\:\=\,\.\%\$\[\]\(\)\!\§\@\<\>])/g
     ),
   url: input =>
     /**

@@ -2,14 +2,19 @@ import isFunction from "lodash/isFunction";
 import flatten from "lodash/flatten";
 import rules from "./rules";
 import feedback from "./errors";
-import { SEPARATOR_OPTION, SEPARATOR_RULE, LISTENER } from "./constants";
+import {
+  SEPARATOR_OPTION,
+  SEPARATOR_RULE,
+  LISTENER,
+  PLACEHOLDER
+} from "./constants";
 
 module.exports = (input, string, callback) => {
   // Normalize the input parameter to a flat array.
   flatten([input]).forEach(element => {
     // Check for either element or selector.
     element = element.nodeType ? element : document.querySelector(element);
-
+    // element.insertBefore("coucou");
     element.addEventListener(LISTENER, () => {
       // Let's extract the rules off of the given rule argument.
       string.split(SEPARATOR_RULE).forEach(rule => {
@@ -28,13 +33,20 @@ module.exports = (input, string, callback) => {
 
         // invoke the rule, returning boolean
         const validity = rules[ruleName](element, ...options);
-        if (ruleName === "forbiddenChar" && validity instanceof Array) {
-          console.log(validity);
-          errorText = errorText.replace(PLACEHOLDER, validity.join(","));
-        }
+        console.log(validity);
 
         // DOM Manipulations to toggle errors.
-        feedback(element, ruleName, validity, errorText);
+        if (ruleName === "forbiddenChar") {
+          if (validity instanceof Array && validity.length > 0) {
+            errorText = errorText.replace(PLACEHOLDER, validity.join());
+            console.log("errorText :", errorText);
+            feedback(element, ruleName, false, errorText);
+          } else {
+            feedback(element, ruleName, true, errorText);
+          }
+        } else {
+          feedback(element, ruleName, validity, errorText);
+        }
 
         // optionally invoke the callback.
         if (isFunction(callback)) callback(validity);

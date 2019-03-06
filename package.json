@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-validate-extended",
   "description": "A simple Form Validation Utility for Bootstrap 3 and Bootstrap 4 not depending on jQuery.",
-  "version": "v2.2.3",
+  "version": "v2.2.4",
   "sideEffects": false,
   "main": "dist/bootstrap-validate.js",
   "repository": "git@github.com:redouanahdd/bootstrap-validate.git",
@@ -85,6 +85,7 @@
   },
   "dependencies": {
     "big.js": "^5.2.2",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.11"
   }
 }
